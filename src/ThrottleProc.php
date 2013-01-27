@@ -14,6 +14,7 @@
  */
 
 class ThrottleProc {
+    const SECOND_TO_MICRO_SECONDS = 1000000;
 
     /**
     * @param $load : float 
@@ -22,27 +23,27 @@ class ThrottleProc {
     function __construct($load)
     {  
         $this->load = $load;
-        $this->start_time = null;
+        $this->startTime = null;
     }
 
     public function start()
     {  
-        $this->start_time = gettimeofday(true);
+        $this->startTime = gettimeofday(true);
     }
 
     public function stopAndSleep()
     {  
-        if ( !isset($this->start_time) ) {
-            throw "please call start() before call this method.";
+        if ( !isset($this->startTime) ) {
+            throw new \LogicException("please call start() before call this method.");
         }
         $finish_time = gettimeofday(true);
-        $stime = $this->calcSleepTime($this->load, $finish_time - $this->start_time);
+        $stime = self::calcSleepTime($this->load, $finish_time - $this->startTime);
         if ( $stime > 0 ) {
-            usleep($stime * 1000000);
+            usleep($stime * self::SECOND_TO_MICRO_SECONDS);
         }
     }
 
-    public function calcSleepTime($load, $time)
+    public static function calcSleepTime($load, $time)
     {  
         if ( $time > 0.0 ) {
             return $time * ( 1 - $load ) / $load;
