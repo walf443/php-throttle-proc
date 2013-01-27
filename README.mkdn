@@ -15,7 +15,7 @@ Example
 	while ( $data = $db->fetch() ) {
 		$throttle->start();
 		// do something for example heavy DB access
-		$throttle->stopAndSleep(); // sleep proper time as procesure.
+		$throttle->finishAndSleep(); // sleep proper time as procesure.
 	}
 
 Why this module is useful

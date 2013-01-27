@@ -15,7 +15,7 @@
  *      $throttle->start();
  *      // write code that you want to throttle.
  *      // ...
- *      $throttle->stopAndSleep();
+ *      $throttle->finishAndSleep();
  *    }
  *
  */
@@ -38,7 +38,7 @@ class ThrottleProc {
         $this->startTime = gettimeofday(true);
     }
 
-    public function stopAndSleep()
+    public function finishAndSleep()
     {  
         if ( !isset($this->startTime) ) {
             throw new \LogicException("please call start() before call this method.");

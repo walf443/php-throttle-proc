@@ -29,9 +29,9 @@ final class ThrottleProcTest extends \PHPUnit_Framework_TestCase {
      *
      * @expectedException LogicException
      */
-    function test_stopAndSleep__in_case_without_calling_start() {
+    function test_finishAndSleep__in_case_without_calling_start() {
         $throttle = new ThrottleProc(0.1);
-        $throttle->stopAndSleep();
+        $throttle->finishAndSleep();
     }
 
     function test_functional() {
@@ -39,7 +39,7 @@ final class ThrottleProcTest extends \PHPUnit_Framework_TestCase {
         $i = 0;
         while ( $i < 10000 ) {
             $throttle->start();
-            $throttle->stopAndSleep();
+            $throttle->finishAndSleep();
             $i++;
         }
         // echo gettimeofday(true) - $throttle->startTime; // please comment out if you want to show total time.
