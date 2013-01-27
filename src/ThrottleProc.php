@@ -2,6 +2,13 @@
 
 /**
  *
+ * Copyright (C) 2013 by Keiji Yoshimi
+ *
+ * This code is originaly copyed from perl's Sub::Throttle library.
+ *
+ * Copyright (C) 2008 by Cybozu Labs, Inc.
+ * This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself, either Perl version 5.8.6 or, at your option, any later version of Perl 5 you may have available.
+ *
  * @example 
  *    $throttle = new ThrottleProc();
  *    while ( $data = $db->fetch() ) {
