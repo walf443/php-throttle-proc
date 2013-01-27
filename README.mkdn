@@ -1,10 +1,13 @@
-= ThrottleProc =
+ThrottleProc
+===============
 
-== What is it? ==
+What is it?
+---------------
 
 throttle procesure by load.
 
-== Example ==
+Example
+---------
 
 	require_once('path/to/libdir/src/ThrottleProc.php');
 
@@ -15,7 +18,8 @@ throttle procesure by load.
 		$throttle->stopAndSleep(); // sleep proper time as procesure.
 	}
 
-== Why this module is useful. ==
+Why this module is useful
+--------------------------
 
 Following code has some problems.
 
@@ -39,7 +43,8 @@ I'd like to
  * If DB is heavy, don't query frequently.
  * If DB is not heavy, run fast as possible without loading on DB.
 
-== Author ==
+Author
+---------
 
 Copyright (C) 2013 Keiji Yoshimi
 
