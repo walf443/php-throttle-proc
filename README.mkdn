@@ -1,0 +1,50 @@
+= ThrottleProc
+
+== What is it?
+
+throttle procesure by load.
+
+== Example
+
+	require_once('path/to/libdir/src/ThrottleProc.php');
+
+	$throttle = new ThrottleProc(0.1); // total time is 100% and your procesure time is 10%.
+	while ( $data = $db->fetch() ) {
+		$throttle->start();
+		// do something for example heavy DB access
+		$throttle->stopAndSleep(); // sleep proper time as procesure.
+	}
+
+== Why this module is useful.
+
+Following code has some problems.
+
+	$counter = 0;
+	while ( $data = $db->fetch() ) {
+		// do something for example heavy DB access
+		if ( $counter > 0 && $counter % 1000 == 0 ) {
+			sleep(5);
+		}
+		$counter++;
+	}
+
+ * Is it enough to sleep 5 sec?
+ -> There may be many other client access after 5 sec.
+
+ * Is it enough to sleep each 1000 times?
+ -> If your task is too heavy for DB, DB may make heavy on 999 times access.
+
+I'd like to
+
+ * If DB is heavy, don't query frequently.
+ * If DB is not heavy, run fast as possible without loading on DB.
+
+= Author 
+
+Copyright (C) 2013 Keiji Yoshimi
+
+This code is originaly copyed from perl's Sub::Throttle library.
+
+Copyright (C) 2008 by Cybozu Labs, Inc.
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself, either Perl version 5.8.6 or, at your option, any later version of Perl 5 you may have available.
+
